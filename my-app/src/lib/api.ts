@@ -2,9 +2,9 @@ import type { Workout } from "./types";
 
 export const API_BASE = "https://api.abcz.workers.dev/api/fitlog";
 
-/** Fetch every workout in the library. */
+/** Fetch every workout in the library (always fresh, streamed behind a loader). */
 export async function getWorkouts(): Promise<Workout[]> {
-  const res = await fetch(API_BASE, { next: { revalidate: 3600 } });
+  const res = await fetch(API_BASE, { cache: "no-store" });
   if (!res.ok) throw new Error(`Failed to load workouts (${res.status})`);
   return res.json();
 }
