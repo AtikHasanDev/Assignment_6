@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import { usePlan } from "@/context/PlanContext";
 
 const NAV_LINKS = [
   { href: "/", label: "Workouts" },
@@ -16,13 +17,9 @@ function isActive(pathname: string, href: string) {
   return pathname.startsWith(href);
 }
 
-type NavbarProps = {
-  planCount?: number;
-  savedCount?: number;
-};
-
-export default function Navbar({ planCount = 0, savedCount = 0 }: NavbarProps) {
+export default function Navbar() {
   const pathname = usePathname();
+  const { planCount, savedCount } = usePlan();
   const [open, setOpen] = useState(false);
 
   return (
