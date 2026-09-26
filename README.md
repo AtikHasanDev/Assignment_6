@@ -89,7 +89,7 @@ npm start
 
 ## 🔗 Links
 
-- **Live Site:** _add your deployed URL here_
+- **Live Site:** https://assignment-6-gamma-one.vercel.app
 - **GitHub Repository:** https://github.com/AtikHasanDev/Assignment_6
 
 ---
