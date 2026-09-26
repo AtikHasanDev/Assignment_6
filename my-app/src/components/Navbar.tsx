@@ -24,7 +24,7 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-[#1c1f26] bg-[rgba(12,13,16,0.95)] backdrop-blur-[2px]">
-      <nav className="mx-auto flex h-16 w-full max-w-[1280px] items-center justify-between gap-4 px-4 sm:px-6 md:h-20">
+      <nav className="mx-auto flex h-16 w-full max-w-[1280px] items-center justify-between gap-2 px-4 sm:px-6 md:h-20">
         {/* Brand logo */}
         <Link
           href="/"
@@ -60,7 +60,7 @@ export default function Navbar() {
         </ul>
 
         {/* Right side: status badges + mobile menu button */}
-        <div className="flex items-center gap-4 sm:gap-6">
+        <div className="flex items-center gap-3 sm:gap-6">
           <Link
             href="/my-plan"
             className="flex items-center gap-2"
