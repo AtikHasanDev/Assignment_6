@@ -18,7 +18,7 @@ export default function DetailActions({ workout }: { workout: Workout }) {
     if (result === "added") {
       toast.success(`Added ${workout.name} to today's plan`);
     } else if (result === "exists") {
-      toast("Already in today's plan", { icon: "📋" });
+      toast.error(`${workout.name} is already added to today's plan`);
     } else {
       toast.error(`Today's plan is full (${PLAN_CAP} lifts). Finish one first.`);
     }
@@ -29,7 +29,7 @@ export default function DetailActions({ workout }: { workout: Workout }) {
     if (result === "added") {
       toast.success(`Saved ${workout.name} for later`);
     } else {
-      toast("Already in your saved list", { icon: "🔖" });
+      toast.error(`${workout.name} is already saved`);
     }
   }
 
@@ -39,8 +39,10 @@ export default function DetailActions({ workout }: { workout: Workout }) {
         <button
           type="button"
           onClick={handleAdd}
-          disabled={inPlan || planBlocked}
-          className="inline-flex items-center justify-center gap-2 rounded-xl bg-accent px-6 py-3 text-sm font-semibold leading-5 text-[#0f1115] shadow-sm transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:brightness-100"
+          aria-pressed={inPlan}
+          className={`inline-flex items-center justify-center gap-2 rounded-xl bg-accent px-6 py-3 text-sm font-semibold leading-5 text-[#0f1115] shadow-sm transition hover:brightness-110 ${
+            inPlan || planBlocked ? "opacity-70" : ""
+          }`}
         >
           {inPlan ? (
             <CalendarCheck size={16} aria-hidden />
@@ -53,8 +55,10 @@ export default function DetailActions({ workout }: { workout: Workout }) {
         <button
           type="button"
           onClick={handleSave}
-          disabled={saved}
-          className="inline-flex items-center justify-center gap-2 rounded-xl border border-[#374151] px-6 py-3 text-sm font-medium leading-5 text-[#e5e7eb] transition hover:border-accent hover:text-accent disabled:cursor-not-allowed disabled:border-accent/40 disabled:text-accent disabled:hover:border-accent/40"
+          aria-pressed={saved}
+          className={`inline-flex items-center justify-center gap-2 rounded-xl border px-6 py-3 text-sm font-medium leading-5 transition hover:border-accent hover:text-accent ${
+            saved ? "border-accent/40 text-accent" : "border-[#374151] text-[#e5e7eb]"
+          }`}
         >
           {saved ? (
             <BookmarkCheck size={16} aria-hidden />
